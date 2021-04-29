@@ -1,0 +1,87 @@
+<!-- 
+File Name: index.html
+Author: Jet Semrick
+Date: 04-28-2021
+Description: Connect 4.
+ -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Connect 4</title>
+        <script text="text/javascript" src="connect4.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1>Connect 4</h1>
+            <button type="reset" id="reset">RESET</button>
+        </div>
+
+        <table class="game-board">
+            <tr id="row-0">
+                <td onclick="run(id)" class="cell" id="row-0-col-0"></td>
+                <td onclick="run(id)" class="cell" id="row-0-col-1"></td>
+                <td onclick="run(id)" class="cell" id="row-0-col-2"></td>
+                <td onclick="run(id)" class="cell" id="row-0-col-3"></td>
+                <td onclick="run(id)" class="cell" id="row-0-col-4"></td>
+                <td onclick="run(id)" class="cell" id="row-0-col-5"></td>
+                <td onclick="run(id)" class="cell" id="row-0-col-6"></td>
+            </tr>
+            <tr id="row-1">
+                <td onclick="run(id)" class="cell" id="row-1-col-0"></td>
+                <td onclick="run(id)" class="cell" id="row-1-col-1"></td>
+                <td onclick="run(id)" class="cell" id="row-1-col-2"></td>
+                <td onclick="run(id)" class="cell" id="row-1-col-3"></td>
+                <td onclick="run(id)" class="cell" id="row-1-col-4"></td>
+                <td onclick="run(id)" class="cell" id="row-1-col-5"></td>
+                <td onclick="run(id)" class="cell" id="row-1-col-6"></td>
+            </tr>
+            <tr id="row-2">
+                <td onclick="run(id)" class="cell" id="row-2-col-0"></td>
+                <td onclick="run(id)" class="cell" id="row-2-col-1"></td>
+                <td onclick="run(id)" class="cell" id="row-2-col-2"></td>
+                <td onclick="run(id)" class="cell" id="row-2-col-3"></td>
+                <td onclick="run(id)" class="cell" id="row-2-col-4"></td>
+                <td onclick="run(id)" class="cell" id="row-2-col-5"></td>
+                <td onclick="run(id)" class="cell" id="row-2-col-6"></td>
+            </tr>
+            <tr id="row-3">
+                <td onclick="run(id)" class="cell" id="row-3-col-0"></td>
+                <td onclick="run(id)" class="cell" id="row-3-col-1"></td>
+                <td onclick="run(id)" class="cell" id="row-3-col-2"></td>
+                <td onclick="run(id)" class="cell" id="row-3-col-3"></td>
+                <td onclick="run(id)" class="cell" id="row-3-col-4"></td>
+                <td onclick="run(id)" class="cell" id="row-3-col-5"></td>
+                <td onclick="run(id)" class="cell" id="row-3-col-6"></td>
+            </tr>
+            <tr id="row-4">
+                <td onclick="run(id)" class="cell" id="row-4-col-0"></td>
+                <td onclick="run(id)" class="cell" id="row-4-col-1"></td>
+                <td onclick="run(id)" class="cell" id="row-4-col-2"></td>
+                <td onclick="run(id)" class="cell" id="row-4-col-3"></td>
+                <td onclick="run(id)" class="cell" id="row-4-col-4"></td>
+                <td onclick="run(id)" class="cell" id="row-4-col-5"></td>
+                <td onclick="run(id)" class="cell" id="row-4-col-6"></td>
+            </tr>
+            <tr id="row-5">
+                <td onclick="run(id)" class="cell" id="row-5-col-0"></td>
+                <td onclick="run(id)" class="cell" id="row-5-col-1"></td>
+                <td onclick="run(id)" class="cell" id="row-5-col-2"></td>
+                <td onclick="run(id)" class="cell" id="row-5-col-3"></td>
+                <td onclick="run(id)" class="cell" id="row-5-col-4"></td>
+                <td onclick="run(id)" class="cell" id="row-5-col-5"></td>
+                <td onclick="run(id)" class="cell" id="row-5-col-6"></td>
+            </tr>
+            <tr id="row-6">
+                <td onclick="run(id)" class="cell" id="row-6-col-0"></td>
+                <td onclick="run(id)" class="cell" id="row-6-col-1"></td>
+                <td onclick="run(id)" class="cell" id="row-6-col-2"></td>
+                <td onclick="run(id)" class="cell" id="row-6-col-3"></td>
+                <td onclick="run(id)" class="cell" id="row-6-col-4"></td>
+                <td onclick="run(id)" class="cell" id="row-6-col-5"></td>
+                <td onclick="run(id)" class="cell" id="row-6-col-6"></td>
+            </tr>
+        </table>
+    </body>
+</html>
