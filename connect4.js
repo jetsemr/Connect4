@@ -4,11 +4,8 @@ Author: Jet Semrick
 Date: 04-28-2021
 Description: Connect 4.
 Needs:
---check diagonal
 --reset
---notification if board is full
 --fix bug where game ends before token is placed
---display who wins
 --add animations
 */
 
@@ -39,7 +36,18 @@ run = (cell) => {
 
         if (checkWin())
         {
-            alert("Game Over");
+            if (player == 0)
+            {
+                alert("Red Wins");
+            }
+            if (player == 1)
+            {
+                alert("Yellow Wins");
+            }
+        }
+        if (checkFull() && !checkWin())
+        {
+            alert("Tie! Gameboard is full.");
         }
     }
 }
@@ -159,4 +167,23 @@ checkWin = () => {
     {
         return true;
     }
+}
+
+checkFull = () => {
+    let count = 0;
+    for (let i = 0; i < 7; i++)
+    {
+        for (let j = 0; j < 7; j++)
+        {
+            if (gameboard[i][j] != null)
+            {
+                count++;
+            }
+        }
+    }
+    if (count == 49)
+    {
+        return true;
+    }
+    return false;
 }
