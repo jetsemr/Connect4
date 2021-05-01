@@ -4,7 +4,6 @@ Author: Jet Semrick
 Date: 04-28-2021
 Description: Connect 4.
 Needs:
---fix bug where game ends before token is placed
 --add animations
 */
 
@@ -22,39 +21,82 @@ run = (cell) => {
         alert("Game Over");
         return;
     }
-
     if (marked != "red" && marked != "yellow")
     {
-        let player = (turn % 2);
-        if (player == 0)
-        {
-            selectRed("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
-            gameboard[getRow(cell)][getCol(cell)] = player; 
+        let runPromise = function winCondition() {
+            return new Promise((resolve, reject) => {
+            let player = (turn % 2);
+            if (player == 0)
+            {
+                if (getRow(cell) == 0)
+                {
+                    selectRed("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
+                    gameboard[getRow(cell)][getCol(cell)] = player; 
+                }
+                else
+                { 
+                    let promise = function delay() {
+                        return new Promise((resolve, reject) => {
+                            animation(cell);
+                            setTimeout(() => {
+                                resolve("resolved");
+                            }, getRow(cell) * 50);
+                        });
+                    }
+                    promise().then(() => {
+                        selectRed("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
+                        gameboard[getRow(cell)][getCol(cell)] = player;
+                    });
+                }
+            }
+            else 
+            {
+                if (getRow(cell) == 0)
+                {
+                    selectRed("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
+                    gameboard[getRow(cell)][getCol(cell)] = player; 
+                }
+                else
+                {
+                    let promise = function delay() {
+                        return new Promise((resolve, reject) => {
+                            animation(cell);
+                            setTimeout(() => {
+                                resolve("resolved");
+                            }, getRow(cell) * 50);
+                        });
+                    }
+                    promise().then(() => {
+                        selectYellow("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
+                        gameboard[getRow(cell)][getCol(cell)] = player;
+                    });
+                }
+            }
+            setTimeout(() => {
+                resolve()
+            }, 400);
+            turn++;
+            });
         }
-        else 
-        {
-            selectYellow("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
-            gameboard[getRow(cell)][getCol(cell)] = player; 
-        }
-        turn++;
-        
-        setTimeout(() => {
+
+        runPromise().then(() => {
             if (checkWin())
             {
+                let player = (turn % 2);
                 if (player == 0)
                 {
-                    alert("Red Wins");
+                    alert("Yellow Wins");
                 }
                 if (player == 1)
                 {
-                    alert("Yellow Wins");
+                    alert("Red Wins");
                 }
             }
             if (checkFull() && !checkWin())
             {
                 alert("Tie! Gameboard is full.");
             }
-        }, 100);
+        });
     }
 }
 
@@ -67,15 +109,13 @@ selectYellow = (cell) => {
 }
 
 selectBlue = (cell) => {
-    document.getElementById(cell).style.backgroundColor = "blue";
+    document.getElementById(cell).style.backgroundColor = "#5D5C61";
 }
 
 getRow = (cell) => {
     cellRow = parseInt(cell.charAt(4));
 
     while (gameboard[cellRow + 1][getCol(cell)] == null) {
-        console.log(cellRow);
-
         cellRow++;
         if (cellRow == 6)
         {
@@ -196,4 +236,54 @@ checkFull = () => {
         return true;
     }
     return false;
+}
+
+animation = (cell) => {
+    let i = -1;
+
+    function loop() {
+        setTimeout(function() { 
+            i++;
+            if (i <= getRow(cell))
+            {
+                let player = (turn % 2);
+                if (player == 0)
+                {
+                    let promise = function delay() {
+                        console.log("Entered Function");
+                        return new Promise((resolve, reject) => {
+                            selectYellow("row-" + i.toString() + "-col-" + getCol(cell).toString());
+                            setTimeout(() => {
+                                console.log("Inside Function");
+                                resolve("resolved");
+                            }, 50);
+                        });
+                    }
+                    promise().then(() => {
+                        console.log("Function received.");
+                        selectBlue("row-" + i.toString() + "-col-" + getCol(cell).toString()); 
+                    });
+                }
+                if (player == 1)
+                {
+                    let promise = function delay() {
+                        console.log("Entered Function");
+                        return new Promise((resolve, reject) => {
+                            selectRed("row-" + i.toString() + "-col-" + getCol(cell).toString());
+                            setTimeout(() => {
+                                console.log("Inside Function");
+                                resolve("resolved");
+                            }, 50);
+                        });
+                    }
+                    promise().then(() => {
+                        console.log("Function received.");
+                        selectBlue("row-" + i.toString() + "-col-" + getCol(cell).toString()); 
+                    });
+                }
+                loop();
+            }
+        }, 50);
+    }
+    loop();
 }
