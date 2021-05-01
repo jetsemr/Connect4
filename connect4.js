@@ -75,7 +75,6 @@ getCol = (cell) => {
 checkHorizontalWin = () => {
     for (let i = 0; i < 7; i++)
     {
-        let consecutive = 0;
         for (let j = 0; j < 4; j++)
         {
             if (gameboard[i][j] == 0 && gameboard[i][j + 1] == 0  && gameboard[i][j + 2] == 0  && gameboard[i][j + 3] == 0)
@@ -92,10 +91,9 @@ checkHorizontalWin = () => {
 }
 
 checkVerticalWin = () => {
-    for (let i = 0; i < 7; i++)
+    for (let i = 0; i < 4; i++)
     {
-        let consecutive = 0;
-        for (let j = 0; j < 4; j++)
+        for (let j = 0; j < 7; j++)
         {
             if (gameboard[i][j] == 0 && gameboard[i + 1][j] == 0  && gameboard[i + 2][j] == 0  && gameboard[i + 3][j] == 0)
             {
@@ -110,12 +108,33 @@ checkVerticalWin = () => {
     return false;
 }
 
+checkRightDiagonalWin = () => {
+    for (let i = 3; i < 7; i++)
+    {
+        for (let j = 0; j < 4; j++)
+        {
+            if (gameboard[i][j] == 0 && gameboard[i - 1][j + 1] == 0  && gameboard[i - 2][j + 2] == 0  && gameboard[i - 3][j + 3] == 0)
+            {
+                return true;
+            }
+            if (gameboard[i][j] == 1 && gameboard[i - 1][j + 1] == 1  && gameboard[i - 2][j + 2] == 1  && gameboard[i - 3][j + 3] == 1)
+            {
+                return true;
+            }
+        }
+    }
+}
+
 checkWin = () => {
     if (checkHorizontalWin())
     {
         return true;
     }
     if (checkVerticalWin())
+    {
+        return true;
+    }
+    if (checkRightDiagonalWin())
     {
         return true;
     }
