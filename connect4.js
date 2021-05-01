@@ -125,6 +125,23 @@ checkRightDiagonalWin = () => {
     }
 }
 
+checkLeftDiagonalWin = () => {
+    for (let i = 3; i < 7; i++)
+    {
+        for (let j = 7; j > 3; j--)
+        {
+            if (gameboard[i][j] == 0 && gameboard[i - 1][j - 1] == 0  && gameboard[i - 2][j - 2] == 0  && gameboard[i - 3][j - 3] == 0)
+            {
+                return true;
+            }
+            if (gameboard[i][j] == 1 && gameboard[i - 1][j - 1] == 1  && gameboard[i - 2][j - 2] == 1  && gameboard[i - 3][j - 3] == 1)
+            {
+                return true;
+            }
+        }
+    }
+}
+
 checkWin = () => {
     if (checkHorizontalWin())
     {
@@ -135,6 +152,10 @@ checkWin = () => {
         return true;
     }
     if (checkRightDiagonalWin())
+    {
+        return true;
+    }
+    if (checkLeftDiagonalWin())
     {
         return true;
     }
