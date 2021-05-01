@@ -3,6 +3,13 @@ File Name: connect4.js
 Author: Jet Semrick
 Date: 04-28-2021
 Description: Connect 4.
+Needs:
+--check diagonal
+--reset
+--notification if board is full
+--fix bug where game ends before token is placed
+--display who wins
+--add animations
 */
 
 let turn = 1;
@@ -14,7 +21,7 @@ for (let i = 0; i < 7; i++)
 
 run = (cell) => {
     let marked = document.getElementById(cell).style.backgroundColor;
-    console.log(getRow(cell));
+
     if (marked != "red" && marked != "yellow")
     {
         player = (turn % 2);
@@ -25,7 +32,6 @@ run = (cell) => {
         }
         else 
         {
-            console.log(("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString()));
             selectYellow("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
             gameboard[getRow(cell)][getCol(cell)] = player; 
         }
@@ -43,7 +49,6 @@ selectRed = (cell) => {
 }
 
 selectYellow = (cell) => {
-    console.log(cell);
     document.getElementById(cell).style.backgroundColor = "yellow";
 }
 
@@ -52,6 +57,7 @@ getRow = (cell) => {
 
     while (gameboard[cellRow + 1][getCol(cell)] == null) {
         console.log(cellRow);
+
         cellRow++;
         if (cellRow == 6)
         {
@@ -85,8 +91,31 @@ checkHorizontalWin = () => {
     return false;
 }
 
+checkVerticalWin = () => {
+    for (let i = 0; i < 7; i++)
+    {
+        let consecutive = 0;
+        for (let j = 0; j < 4; j++)
+        {
+            if (gameboard[i][j] == 0 && gameboard[i + 1][j] == 0  && gameboard[i + 2][j] == 0  && gameboard[i + 3][j] == 0)
+            {
+                return true;
+            }
+            if (gameboard[i][j] == 1 && gameboard[i + 1][j] == 1  && gameboard[i + 2][j] == 1  && gameboard[i + 3][j] == 1)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 checkWin = () => {
     if (checkHorizontalWin())
+    {
+        return true;
+    }
+    if (checkVerticalWin())
     {
         return true;
     }
