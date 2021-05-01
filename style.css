@@ -1,18 +1,25 @@
+body {
+    background-color: #EDF5E1
+}
 .header {
     text-align: center;
+    font-family: arial;
     margin-bottom: 25px;
 }
 
 .game-board {
     margin: auto;
+    background-color: #7395AE;
+    border-radius: 1%;
 }
 
 .cell {
-    background-color: blue;
+    background-color: #5D5C61;
+    border-radius: 50%;
     height: 100px;
     width: 100px;
 }
 
 .cell:hover {
-    background-color: lightblue;
+    background-color: #B1A296;
 }
