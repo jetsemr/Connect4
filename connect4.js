@@ -28,13 +28,11 @@ run = (cell) => {
         let player = (turn % 2);
         if (player == 0)
         {
-            //animation(cell);
             selectRed("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
             gameboard[getRow(cell)][getCol(cell)] = player; 
         }
         else 
         {
-            //animation(cell);
             selectYellow("row-" + getRow(cell).toString() + "-col-" + getCol(cell).toString());
             gameboard[getRow(cell)][getCol(cell)] = player; 
         }
@@ -196,22 +194,4 @@ checkFull = () => {
         return true;
     }
     return false;
-}
-
-animation = (cell) => {
-    for (let i = 0; i < getRow(cell); i++)
-    {
-        console.log("HERE");
-        let player = (turn % 2);
-        if (player == 0)
-        {
-            setTimeout(function () {document.getElementById("row-" + i.toString() + "-col-" + getCol(cell).toString()).style.backgroundColor = "red"},500);
-            setTimeout(function () {document.getElementById("row-" + i.toString() + "-col-" + getCol(cell).toString()).style.backgroundColor = "blue"}, 1000);
-        }
-        else 
-        {
-            setTimeout(function () {document.getElementById("row-" + i.toString() + "-col-" + getCol(cell).toString()).style.backgroundColor = "yellow"},500);
-            setTimeout(function () {document.getElementById("row-" + i.toString() + "-col-" + getCol(cell).toString()).style.backgroundColor = "blue"}, 1000);
-        }
-    }
 }
