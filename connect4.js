@@ -37,22 +37,24 @@ run = (cell) => {
             gameboard[getRow(cell)][getCol(cell)] = player; 
         }
         turn++;
-
-        if (checkWin())
-        {
-            if (player == 0)
+        
+        setTimeout(() => {
+            if (checkWin())
             {
-                alert("Red Wins");
+                if (player == 0)
+                {
+                    alert("Red Wins");
+                }
+                if (player == 1)
+                {
+                    alert("Yellow Wins");
+                }
             }
-            if (player == 1)
+            if (checkFull() && !checkWin())
             {
-                alert("Yellow Wins");
+                alert("Tie! Gameboard is full.");
             }
-        }
-        if (checkFull() && !checkWin())
-        {
-            alert("Tie! Gameboard is full.");
-        }
+        }, 100);
     }
 }
 
